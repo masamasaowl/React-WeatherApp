@@ -1,10 +1,13 @@
+import './GoogleMaps.css'
+
 import { useEffect, useRef } from "react";
+// import { geocodeCity } from "./helpers/geocodeAddress";
 
 // Loader is made by google which calls the google API whenever we wish to access it 
 import { Loader } from "@googlemaps/js-api-loader";
-import { Marker } from "@react-google-maps/api";
 
-const SimpleMapLoader = () => {
+
+export default function GoogleMaps({coordinates}){
 
   // useRef helps us access our DOM directly from react, here it will create a div for our map
   const mapRef = useRef(null);
@@ -26,26 +29,26 @@ const SimpleMapLoader = () => {
       .load()
 
       .then((google) => {
-        // Initialize map once API is loaded async
-        new google.maps.Map(mapRef.current, {
-          center: { lat: 28.6139, lng: 77.2090 },
-          zoom: 10,
-        });
+        // a default center to avoid error
+        const defaultCenter = { lat: 28.6139, lng: 77.2090 };
 
+      const map = new google.maps.Map(mapRef.current, {
+        center: coordinates || defaultCenter,
+        zoom: 10,
 
-        const { AdvancedMarkerElement } = google.maps.marker;
-        const marker = new AdvancedMarkerElement({
-          map,
-          position: { lat: 28.6139, lng: 77.2090 },
-          title: "Delhi!",
-        });
-
-      })
-
-      .catch((e) => {
-        console.error("Error loading Google Maps: ", e);
+        // markerID for advanced marker
+        mapId:import.meta.env.VITE_MAP_ID
       });
 
+      // add marker
+      const { AdvancedMarkerElement } = google.maps.marker;
+
+      const marker = new AdvancedMarkerElement({
+        map,
+        position: coordinates || defaultCenter,
+        title: "You are here!",
+      });
+      });
   }, []);
 
   return (
@@ -54,7 +57,7 @@ const SimpleMapLoader = () => {
       // this is the div we were referring to
         ref={mapRef}
         style={{
-          width: "100%",
+          width: "65vw",
           height: "500px",
           borderRadius: "8px",
         }}
@@ -63,4 +66,3 @@ const SimpleMapLoader = () => {
   );
 };
 
-export default SimpleMapLoader;

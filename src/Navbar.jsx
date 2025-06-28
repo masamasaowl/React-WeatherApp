@@ -1,3 +1,4 @@
+import SimpleMapLoader from './GoogleMaps'
 import './Navbar.css'
 import logo from './assets/your-cloud-copy.svg'
 export default function Navbar() {

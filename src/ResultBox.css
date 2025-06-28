@@ -1,0 +1,12 @@
+.ResultBox{
+    background-color: rgb(221, 244, 50);
+}
+.weatherDetails{
+    display: flex;
+    background-color: aquamarine;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+}
