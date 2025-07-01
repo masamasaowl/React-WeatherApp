@@ -48,8 +48,11 @@ export default function GoogleMaps({coordinates}){
         position: coordinates || defaultCenter,
         title: "You are here!",
       });
+      console.log(marker);
       });
-  }, []);
+
+      // re-render every time coordinates change
+  }, [coordinates]);
 
   return (
     <div>
@@ -57,9 +60,11 @@ export default function GoogleMaps({coordinates}){
       // this is the div we were referring to
         ref={mapRef}
         style={{
-          width: "65vw",
-          height: "500px",
+          width: "90vw",
+          height: "45vh",
+          margin:"auto",
           borderRadius: "8px",
+          marginTop: "2rem"
         }}
       />
     </div>

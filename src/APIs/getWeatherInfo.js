@@ -25,7 +25,8 @@ export default async function getWeatherInfo(city) {
             params: {
                 lat: lat,
                 lon: lon,
-                appid: key
+                appid: key,
+                units: "metric"
             }
         })
     console.log(response.data);

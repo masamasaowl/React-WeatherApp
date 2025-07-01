@@ -1,9 +1,6 @@
 import './App.css'
 import ErrorBoundary from './ErrorBoundary'
-import SimpleMapLoader from './GoogleMaps'
-import SimpleMap from './GoogleMaps'
 import Navbar from './Navbar'
-import ResultBox from './ResultBox'
 import SearchBox from './SearchBox'
 import VantaBackground from './VantaBackground'
 

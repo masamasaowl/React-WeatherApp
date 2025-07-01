@@ -44,7 +44,7 @@ export default function SearchBox() {
   return (
     <div className='input'>
       <form action="/" onSubmit={handleSubmit}>
-        <TextField className='SearchBox' id="outlined-basic" label="Your City" variant="outlined" required onChange={handleChange} />
+        <TextField className='SearchBox poppins' id="outlined-basic" label="Your City" variant="outlined" required onChange={handleChange} />
 
 
         <Button type='submit' className='SubmitBtn' variant="contained" 

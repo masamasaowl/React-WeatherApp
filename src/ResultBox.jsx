@@ -1,5 +1,6 @@
 import GoogleMaps from './GoogleMaps'
 import { geocodeCity } from './helpers/geocodeAddress';
+import Loading from './Loading';
 import './ResultBox.css'
 import { useState, useEffect } from 'react';
 
@@ -31,26 +32,44 @@ export default function ResultBox({city, info}) {
   }
 
   if (!coordinates) {
-    return <div>🔄 Fetching map...</div>;
+    return(
+      <Loading/>
+    );
   }
 
   return (
     <div className='ResultBox'>
+
+      <p className='search poppins'>Search results for : "{city}"</p>
+
+      {/* if info exists */}
       {info && info.main && (
         <div className='weatherDetails'>
+          <p className='weatherToday poppins'>Weather Today in {info.name}</p>
 
-          <p>{city}</p>
+          <div className="temperature">
+            <p className='poppins'>Temperature</p>
 
-          <p className='temp'> {Math.floor(info.main.temp - 273.5)}°C</p>
+            <p className='temp poppins'> {Math.floor(info.main.temp)}°C</p>
+          </div>
 
-          <p>{info.weather[0].description}</p>
 
-          <p>{info.wind.speed} km/h</p>
+          <div className='feelsLike'>
+
+            <p className='poppins'>Feels like</p>
+          
+            <p className='temp poppins'> {Math.floor(info.main.feels_like)}°C</p>
+          </div>
+
+
+
+          <p className='description poppins'>{info.weather[0].description}</p>
+
+          <p>Winds: {info.wind.speed} km/h</p>
 
 
 
           <p> Humidity: {info.main.humidity}%</p>
-          <p> Location: {info.name}</p>
         </div>
       )}
       <GoogleMaps coordinates={coordinates} />
